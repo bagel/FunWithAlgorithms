@@ -1,0 +1,10 @@
+*.pyc
+log/*
+*.bak
+*.swp
+*.swo
+tags
+cscope.*
+__pycache__
+src/*
+data
