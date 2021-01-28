@@ -51,6 +51,38 @@ func postOrder(root *TreeNode) {
 	fmt.Printf("%d->", cur.Val)
 }
 
+func sameTree(t1 *TreeNode, t2 *TreeNode) bool {
+	if t2 == nil {
+		return true
+	}
+
+	if t1 == nil || t1.Val != t2.Val {
+		return false
+	}
+
+	return sameTree(t1.Left, t2.Left) && sameTree(t1.Right, t2.Right)
+}
+
+func hasSubTree(t1 *TreeNode, t2 *TreeNode) bool {
+	result := false
+
+	if t1 != nil && t2 != nil {
+		if t1.Val == t2.Val {
+			result = sameTree(t1, t2)
+		}
+
+		if !result {
+			result = sameTree(t1.Left, t2)
+		}
+
+		if !result {
+			result = sameTree(t1.Right, t2)
+		}
+	}
+
+	return result
+}
+
 func main() {
 	root := initTree()
 	preOrder(root)
@@ -59,4 +91,7 @@ func main() {
 	fmt.Printf("\n")
 	postOrder(root)
 	fmt.Printf("\n")
+
+	sub := &TreeNode{Val: 2, Left: &TreeNode{Val: 4}, Right: &TreeNode{Val: 7}}
+	fmt.Println(hasSubTree(root, sub))
 }
