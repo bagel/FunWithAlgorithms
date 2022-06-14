@@ -16,7 +16,7 @@ struct ListNode {
 static ListNode* InitList(vector<int> arr) {
     ListNode* head = new ListNode(arr[0]);
     ListNode* cur = head;
-    for (int i = 1; i < arr.size(); ++i) {
+    for (size_t i = 1; i < arr.size(); ++i) {
         cur->next = new ListNode(arr[i]);
         cur = cur->next;
     }
