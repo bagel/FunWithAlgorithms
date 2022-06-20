@@ -1,5 +1,5 @@
-#include "link.h"
 #include <vector>
+#include "link.h"
 
 using namespace std;
 
@@ -15,6 +15,7 @@ bool isCycle(ListNode* head) {
         }
     }
 
+    cout << "test" << endl;
     return false;
 }
 
@@ -38,10 +39,10 @@ ListNode* posCycle(ListNode* head) {
 }
 
 int main() {
-    vector<int> arr = {0, 1, 2, 3, 4, 5, 6};
+    vector<int> vec = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 
-    ListNode* head = InitList(arr);
-    ShowList(head);
+    ListNode* head = new ListNode(vec);
+    head->ShowList();
 
     ListNode* tail = head;
     while (tail != nullptr && tail->next != nullptr) {
@@ -57,12 +58,13 @@ int main() {
     }
     cout << "cur: " << cur->val << endl;
 
-    tail->next = cur;
+    //tail->next = cur;
 
-    cout << "isCycle: " << isCycle(head) << endl;
+    //cout << "isCycle: " << isCycle(head) << endl;
 
-    ListNode* p = posCycle(head);
-    cout << "pos: " << p->val << endl;
+    //ListNode* p = posCycle(head);
+    //cout << "pos: " << p->val << endl;
 
+    delete head;
     return 0;
 }

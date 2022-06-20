@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    build:
+        image: ubuntu:latest
+        volumes: 
+            - ./:/src
+        working_dir: /src
+        command: g++ -std=c++11 -g -o cycle cycle.cpp
+    valgrind:
+        image: ubuntu:latest
+        volumes: 
+            - ./:/src
+        working_dir: /src
+        command: valgrind -s --tool=memcheck --leak-check=full ./cycle

@@ -8,23 +8,40 @@ struct ListNode {
     int val;
     ListNode* next;
     ListNode(int x) : val(x), next(nullptr) {}
-    static ListNode* InitList(vector<int>);
-    static void ShowList(ListNode*);
+    ListNode(vector<int>);
+    ~ListNode();
+
+    ListNode* InitList(vector<int>);
+    void ShowList();
 };
 
 
-static ListNode* InitList(vector<int> arr) {
-    ListNode* head = new ListNode(arr[0]);
-    ListNode* cur = head;
-    for (size_t i = 1; i < arr.size(); ++i) {
-        cur->next = new ListNode(arr[i]);
+inline ListNode::ListNode(vector<int> vec) {
+    if (vec.size() == 0) {
+        return;
+    }
+
+    val = vec[0];
+    ListNode* cur = this;
+    for (size_t i = 1; i < vec.size(); ++i) {
+        cur->next = new ListNode(vec[i]);
         cur = cur->next;
     }
-    return head;
 }
 
-static void ShowList(ListNode* head) {
-    ListNode* cur = head;
+
+inline ListNode::~ListNode() {
+    cout << "deconstructor linkedlist " << val << endl;
+    if (next == nullptr) {
+        return;
+    }
+    delete next;
+    cout << "after: " << this->val << " " << this->next->val << endl;
+}
+
+
+inline void ListNode::ShowList() {
+    ListNode* cur = this;
     while (cur != nullptr) {
         cout << cur->val << ",";
         cur = cur->next;
